@@ -1,0 +1,21 @@
+<div layout="row">
+    <md-input-container>
+        <label>Title</label>
+        <input ng-model="title">
+    </md-input-container>
+
+    <md-select ng-model="year" style="min-width: 200px;">
+        <md-select-label>{{ year ? year : 'Year' }}</md-select-label>
+        <md-option ng-value="year" ng-repeat="year in app.years">{{year}}</md-option>
+    </md-select>
+</div>
+
+    <md-button class="md-raised md-primary" ng-click="app.getMovie(title, year)">Search</md-button>
+    <md-button class="md-raised md-accent" ng-click="app.addMovie(app.movie.title, app.movie.actors, app.movie.plot, app.movie.poster)">Add movie to list</md-button>
+
+<div flex>
+    {{app.movie.title}}
+    {{app.movie.actors}}
+    {{app.movie.plot}}
+    <img ng-src="{{app.movie.poster}}">
+</div>
