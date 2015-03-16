@@ -1,2 +1,4 @@
 # MovieApp
-Movie App with CRUD functionality -- Unfinished --
+Movie App with CRUD functionality 
+
+-- Unfinished --
