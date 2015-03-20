@@ -6,20 +6,28 @@ MovieApp.controller('AppCtrl', function(omdb, db, $state, $timeout) {
     self.years = [];
     self.ids = [];
 
-    // update list
-
+    /*
+    *   omdb api
+    */
 
     self.getMovie = function(title, year) {
         year = typeof year === 'undefined' ? "" : year;
         omdb.getMovie(title, year).then(function(data){
+            console.log(data.data);
             self.movie = {
                 poster: data.data.Poster,
                 title: data.data.Title,
                 actors: data.data.Actors,
-                plot: data.data.Plot
+                plot: data.data.Plot,
+                rating: data.data.Rating,
+                genre: data.data.Genre
             };
         });
     };
+    
+    /*
+    *   database intereaction
+    */
 
     self.addMovie = function(title, actors, plot, poster) {
         db.addMovie(title, actors, plot, poster);
@@ -42,15 +50,3 @@ MovieApp.controller('AppCtrl', function(omdb, db, $state, $timeout) {
 
     self.updateList();
 });
-
-/*
-MovieApp.controller('listCtrl', function(omdb, db, $state) {
-
-});
-
-MovieApp.controller('addCtrl', function(omdb, db, $state) {
-    for(var i = 2015; i >= 1975; i--) {
-        self.years.push(i)
-    }
-})
-*/
