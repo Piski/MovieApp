@@ -28,13 +28,29 @@ function getMovie($id) {
 
 function getMovies() {
     $database = dbConnection();
-    $data = $database->select('movies', [
+    $movie = $database->select('movies', [
         'id',
         'title',
-        'actors',
         'plot',
-        'poster'
+        'poster',
+        'rating'
     ]);
+
+    $actors = $database->select("actor", [
+        "[>]movie_actors" => ["id" => "aid"],
+    ], [
+        "actor.name"
+    ]);
+    
+    $genres = $database->select("genres", [
+        "[>]movie_genre" => ["id" => "gid"],
+    ], [
+        "genres.genre"
+    ]);
+    
+    
+    $data = array_merge($movie, $actors, $genres);
+    //var_dump($data);
     echo json_encode($data);
 }
 
@@ -46,6 +62,7 @@ function addMovie($title, $actors, $plot, $poster, $rating, $genres) {
     $actor = explode(', ', $actors);
     $genre = explode(', ', $genres);
     $poster = urldecode($poster);
+    $newMovie = false;
     $database = dbConnection();
     if(!$database->has("movies", ["title" => $title])) {
         $database->insert("movies", [
@@ -54,6 +71,7 @@ function addMovie($title, $actors, $plot, $poster, $rating, $genres) {
             "poster" => $poster,
             "rating" => $rating
         ]);
+        $newMovie = true;
     };
 
     foreach($actor as $name) {
@@ -71,39 +89,45 @@ function addMovie($title, $actors, $plot, $poster, $rating, $genres) {
         };
     };
     
-    $movie_id = $database->get('movies', [
-        'id'
-    ],[
-        "title" => $title
-    ]);
     
     
-    
-    foreach($actor as $name) {
-        $actor_id = $database->get('actor', [
+    if($newMovie) {
+        $movie_id = $database->get('movies', [
             'id'
         ],[
-            "name" => $name
+            "title" => $title
         ]);
-        $database->insert("movie_actors", [
-            "mid" => $movie_id['id'],
-            "aid" => $actor_id['id']
-        ]);
-    };
+        
+        foreach($actor as $name) {
+            $actor_id = $database->get('actor', [
+                'id'
+            ],[
+                "name" => $name
+            ]);
+            $database->insert("movie_actors", [
+                "mid" => $movie_id['id'],
+                "aid" => $actor_id['id']
+            ]);
+        };
 
     
     
-    foreach($genre as $name) {
-        $genre_id = $database->get('genres', [
-            'id'
-        ],[
-            "genre" => $name
-        ]);
-        $database->insert("movie_genre", [
-            "mid" => $movie_id['id'],
-            "gid" => $genre_id['id']
-        ]);
+        foreach($genre as $name) {
+            $genre_id = $database->get('genres', [
+                'id'
+            ],[
+                "genre" => $name
+            ]);
+            $database->insert("movie_genre", [
+                "mid" => $movie_id['id'],
+                "gid" => $genre_id['id']
+            ]);
+        };
     };
+    
+    
+    
+    
 
     /*
      * TODO: make sure that not adding duplicates to movie_actors and movie_genre
@@ -143,7 +167,7 @@ function dbConnection() {
         'database_name' => 'movieapp',
         'server' => 'localhost',
         'username' => 'root',
-        'password' => 'eskimo',
+        'password' => '',
         'charset' => 'utf8'
     ]);
     return $database;

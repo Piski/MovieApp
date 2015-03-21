@@ -8,7 +8,10 @@ angular.module('MovieApp')
         };
 
         obj.getMovies = function(){
-            return $http.get(serviceBase + "movies");
+            return $http.get(serviceBase + "movies").
+            success(function(data) {
+                console.log(data);
+            });
         };
 
         obj.addMovie = function(title, actors, plot, poster, rating, genres){

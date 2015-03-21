@@ -9,10 +9,12 @@
                         </div>
                         <div class="md-tile-content">
                             <h3>{{movie.title}}</h3>
-                            <h4>{{movie.actors}}</h4>
+                            <h4>{{movie.name}}</h4>
+                            <h4>{{movie.genre}}</h4>
                             <p>
                                 {{movie.plot}}
                             </p>
+                            <h4>{{movie.rating}}</h4>
                         </div>
                         <md-button class="md-raised md-primary">Edit</md-button>
                         <md-button class="md-raised md-warn" ng-click="app.deleteMovie($index)">Delete</md-button>
