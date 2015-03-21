@@ -19,7 +19,7 @@ MovieApp.controller('AppCtrl', function(omdb, db, $state, $timeout) {
                 title: data.data.Title,
                 actors: data.data.Actors,
                 plot: data.data.Plot,
-                rating: data.data.Rating,
+                rating: data.data.imdbRating,
                 genre: data.data.Genre
             };
         });
@@ -29,8 +29,8 @@ MovieApp.controller('AppCtrl', function(omdb, db, $state, $timeout) {
     *   database intereaction
     */
 
-    self.addMovie = function(title, actors, plot, poster) {
-        db.addMovie(title, actors, plot, poster);
+    self.addMovie = function(title, actors, plot, poster, rating, genre) {
+        db.addMovie(title, actors, plot, poster, rating, genre);
     };
 
     self.deleteMovie = function(id) {

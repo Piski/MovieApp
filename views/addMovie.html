@@ -11,11 +11,13 @@
 </div>
 
     <md-button class="md-raised md-primary" ng-click="app.getMovie(title, year)">Search</md-button>
-    <md-button class="md-raised md-accent" ng-click="app.addMovie(app.movie.title, app.movie.actors, app.movie.plot, app.movie.poster)">Add movie to list</md-button>
+    <md-button class="md-raised md-accent" ng-click="app.addMovie(app.movie.title, app.movie.actors, app.movie.plot, app.movie.poster, app.movie.rating, app.movie.genre)">Add movie to list</md-button>
 
 <div flex>
     {{app.movie.title}}
     {{app.movie.actors}}
     {{app.movie.plot}}
+    {{app.movie.rating}}
+    {{app.movie.genre}}
     <img ng-src="{{app.movie.poster}}">
 </div>
