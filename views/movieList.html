@@ -1,6 +1,6 @@
 <div flex layout="row">
     <div flex>
-        <md-content style="height: 600px;">
+        <md-content>
             <md-list>
                 <md-item ng-repeat="movie in app.movies track by $index">
                     <md-item-content>
@@ -16,8 +16,15 @@
                             </p>
                             <h4>{{movie.rating}}</h4>
                         </div>
-                        <md-button class="md-raised md-primary" ng-click="app.editMovie(movie.id)" ui-sref="update">Edit</md-button>
-                        <md-button class="md-raised md-warn" ng-click="app.deleteMovie($index)">Delete</md-button>
+                        <div layout="row" layout-align="space-around center">
+                            <md-button class="md-raised md-primary" ng-click="app.editMovie(movie.id)" ui-sref="update" aria-label="edit">
+                                <ng-md-icon icon="mode_edit" style="fill: white" size="32"></ng-md-icon> 
+                            </md-button>
+                            <md-button class="md-raised md-warn" ng-click="app.deleteMovie($index)" aria-label="delete">
+                                <ng-md-icon icon="delete" style="fill: white" size="32"></ng-md-icon> 
+                            </md-button>
+                        </div>
+                        
                     </md-item-content>
                     <md-divider inset></md-divider>
                 </md-item>

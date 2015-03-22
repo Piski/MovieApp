@@ -1,4 +1,4 @@
-MovieApp.controller('AppCtrl', function(omdb, db, $state, $timeout) {
+MovieApp.controller('AppCtrl', function(omdb, db, myfilms, $state, $timeout) {
 
     var self = this;
     self.movies = [];
@@ -21,6 +21,19 @@ MovieApp.controller('AppCtrl', function(omdb, db, $state, $timeout) {
                 plot: data.data.Plot,
                 rating: data.data.imdbRating,
                 genre: data.data.Genre
+            };
+        });
+    };
+    
+    /*
+     * MYFILMS API 
+     */
+    
+    self.searchMovie = function(title) {
+        myfilms.getMovie(title).then(function(data){
+            console.log(data);
+            self.altMovie = {
+                title: data.data.Title
             };
         });
     };
@@ -55,9 +68,19 @@ MovieApp.controller('AppCtrl', function(omdb, db, $state, $timeout) {
     self.updateMovie = function(id, title, actors, plot, poster, rating, genre) {
         db.updateMovie(id, title, actors, plot, poster, rating, genre);
     };
+    
+    self.clearMovie = function() {
+        self.movie = {}; 
+    };
 
-    // occupy select field with years
+    /*
+     * OCCUPY SELECT FIELD WITH YEARS
+     */
     for(var i = 2015; i >= 1975; i--) self.years.push(i);
+    
+    /*
+     * UPDATE ON START
+     */
 
     self.updateList();
 });

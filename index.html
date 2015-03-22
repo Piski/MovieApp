@@ -12,27 +12,31 @@
 <body ng-app="MovieApp" layout="column" ng-controller="AppCtrl as app">
 <md-toolbar md-scroll-shrink class="md-tall">
     <div class="md-toolbar-tools">
-        <div layout="column" layout-align="center start">
-            <h1>
-                <span>Movies or tv shows to watch</span>
+        <div layout="column" layout-align="center start" id="header-text">
+            <h1 id="header-h1">Movies or tv shows to watch
             </h1>
-            <p>A place where anyone can suggest something good to watch</p>
+            <p id="header-p">A place where anyone can suggest something good to watch</p>
         </div>
-
+        
+        <div layout="row" layout-align="space-around center">
+            <div flex>
+            <md-button class="md-primary" ui-sref="add" ng-click="app.clearMovie()" aria-label="add">
+                <ng-md-icon icon="add_box" style="fill: white" size="48"></ng-md-icon> 
+            </md-button>
+            </div>
+            <div flex>
+            <md-button class="md-accent" ui-sref="movies" ng-click="app.updateList()" aria-label="list">
+                <ng-md-icon icon="list" style="fill: white" size="48"></ng-md-icon> 
+            </md-button>
+            </div>
+        </div>
+        
     </div>
 </md-toolbar>
-<div layout="row" layout-align="center center">
-
-    <div flex>
-        <md-button class="md-primary" ui-sref="add" style="width: 100%">Add</md-button>
-    </div>
-    <div flex>
-        <md-button class="md-accent" ui-sref="movies" ng-click="app.updateList()" style="width: 100%">List</md-button>
-    </div>
-</div>
 
 
-</div>
+
+
 
 <md-content ui-view>
 
@@ -51,6 +55,7 @@
     <script src="src/controllers/AppCtrl.js"></script>
     <script src="src/services/omdbApi.js"></script>
     <script src="src/services/dbApi.js"></script>
+    <script src="src/services/myfilmsApi.js"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-animate.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-aria.min.js"></script>
@@ -59,5 +64,6 @@
 
     <!-- Angular Material Javascript now available via Google CDN; version 0.7 used here -->
     <script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.8.2/angular-material.min.js"></script>
+    <script src="//cdn.jsdelivr.net/angular-material-icons/0.4.0/angular-material-icons.min.js"></script>
 </body>
 </html>
