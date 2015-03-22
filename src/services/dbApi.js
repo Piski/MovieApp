@@ -27,7 +27,10 @@ angular.module('MovieApp')
 
         obj.updateMovie = function(id, title, actors, plot, poster, rating, genres){
             for (i = 0; i < 2; i++) poster = encodeURIComponent(poster);
-            return $http.put(serviceBase + "update_movie/" + id + "/" + title + "/" + actors + "/" + plot + "/" + poster + "/" + rating + "/" + genres);
+            return $http.put(serviceBase + "update_movie/" + id + "/" + title + "/" + actors + "/" + plot + "/" + poster + "/" + rating + "/" + genres)
+            success(function(status, data) {
+                console.log("status: " + status + "\ndata: " + data);
+            });
         };
 
         obj.deleteMovie = function(id){

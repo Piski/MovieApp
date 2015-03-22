@@ -30,6 +30,10 @@ h1, p {
     margin: 10px;
 }
 
+.md-button.md-default-theme.md-accent.md-raised, .md-button.md-default-theme.md-accent.md-fab {
+    margin: 10px;
+}
+
 .md-button.md-default-theme.md-warn.md-raised, .md-button.md-default-theme.md-warn.md-fab {
     margin: 10px;
     margin-right: 20px;
@@ -66,4 +70,12 @@ h1, p {
 #updateForm {
     margin: 50px;
     width: 50vw;
+}
+
+#add-content {
+    width: 30vw;
+}
+
+#add-content-image {
+    max-height: 504px;
 }

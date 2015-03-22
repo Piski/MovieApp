@@ -20,7 +20,8 @@ MovieApp.controller('AppCtrl', function(omdb, db, myfilms, $state, $timeout) {
                 actors: data.data.Actors,
                 plot: data.data.Plot,
                 rating: data.data.imdbRating,
-                genre: data.data.Genre
+                genres: data.data.Genre,
+                error: data.data.Error
             };
         });
     };
