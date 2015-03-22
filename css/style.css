@@ -1,14 +1,15 @@
 body, html {
     overflow: hidden;
+    color: grey;
 }
 
 .poster {
-    width: 48px;
+    width: 64px;
     margin: 16px;
-    border-radius: 48px;
+    border-radius: 12px;
     border: 1px solid #ddd;
 }
 
 h1, p {
-    margin: 0;
+
 }

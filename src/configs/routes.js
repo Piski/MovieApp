@@ -21,5 +21,13 @@ angular.module("MovieApp")
                 controller: "addCtrl",
                 controllerAs: "app"
                 */
+            })
+            .state('update', {
+                url: "/update",
+                templateUrl: "views/updateMovie.html"
+                /*
+                    controller: "listCtrl",
+                    controllerAs: "app"
+                    */
             });
     });

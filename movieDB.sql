@@ -15,7 +15,7 @@ create table movie_genre (
 	mid int not null,
 	gid int not null,
 	foreign key (mid) references movies(id),
-	foreign key (gid) references genres(id)
+	foreign key (gid) references genre(id)
 );
 create table actor (
 	id int not null auto_increment,

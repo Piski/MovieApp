@@ -1,0 +1,27 @@
+<div layout="row">
+    <md-input-container>
+        <label>Title</label>
+        <input ng-model="app.movie.title">
+    </md-input-container>
+    <md-input-container>
+        <label>Actors</label>
+        <input ng-model="app.movie.actors">
+    </md-input-container>
+    <md-input-container>
+        <label>Plot</label>
+        <input ng-model="app.movie.plot">
+    </md-input-container>
+    <md-input-container>
+        <label>Rating</label>
+        <input ng-model="app.movie.rating">
+    </md-input-container>
+    <md-input-container>
+        <label>Genres</label>
+        <input ng-model="app.movie.genres">
+    </md-input-container>
+</div>
+<div flex>
+    <img ng-src="{{app.movie.poster}}">
+</div>
+
+<md-button class="md-raised md-accent" ng-click="app.updateMovie(app.movie.id, app.movie.title, app.movie.actors, app.movie.plot, app.movie.poster, app.movie.rating, app.movie.genres)">Update movie on the list</md-button>

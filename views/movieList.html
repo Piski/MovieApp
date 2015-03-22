@@ -8,15 +8,15 @@
                             <img ng-src="{{movie.poster}}" alt="{{item.title}}" class="poster">
                         </div>
                         <div class="md-tile-content">
-                            <h3>{{movie.title}}</h3>
-                            <h4>{{movie.name}}</h4>
-                            <h4>{{movie.genre}}</h4>
+                            <h2>{{movie.title}}</h2>
+                            <h3>{{movie.actors}}</h3>
+                            <h4>{{movie.genres}}</h4>
                             <p>
                                 {{movie.plot}}
                             </p>
                             <h4>{{movie.rating}}</h4>
                         </div>
-                        <md-button class="md-raised md-primary">Edit</md-button>
+                        <md-button class="md-raised md-primary" ng-click="app.editMovie(movie.id)" ui-sref="update">Edit</md-button>
                         <md-button class="md-raised md-warn" ng-click="app.deleteMovie($index)">Delete</md-button>
                     </md-item-content>
                     <md-divider inset></md-divider>
@@ -24,6 +24,4 @@
             </md-list>
         </md-content>
     </div>
-
-
 </div>

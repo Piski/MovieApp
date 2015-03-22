@@ -4,7 +4,10 @@ angular.module('MovieApp')
         var obj = {};
 
         obj.getMovie = function(id){
-            return $http.get(serviceBase + "movie/" + id);
+            return $http.get(serviceBase + "movie/" + id).
+            success(function(data) {
+                console.log(data);
+            });
         };
 
         obj.getMovies = function(){
@@ -23,7 +26,7 @@ angular.module('MovieApp')
         };
 
         obj.updateMovie = function(id, title, actors, plot, poster, rating, genres){
-            poster = encapsulateUrl(poster);
+            for (i = 0; i < 2; i++) poster = encodeURIComponent(poster);
             return $http.put(serviceBase + "update_movie/" + id + "/" + title + "/" + actors + "/" + plot + "/" + poster + "/" + rating + "/" + genres);
         };
 

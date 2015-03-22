@@ -7,7 +7,7 @@ MovieApp.controller('AppCtrl', function(omdb, db, $state, $timeout) {
     self.ids = [];
 
     /*
-    *   omdb api
+    *   OMDB API
     */
 
     self.getMovie = function(title, year) {
@@ -26,7 +26,7 @@ MovieApp.controller('AppCtrl', function(omdb, db, $state, $timeout) {
     };
     
     /*
-    *   database intereaction
+    *   DATABASE INTERACTION
     */
 
     self.addMovie = function(title, actors, plot, poster, rating, genre) {
@@ -35,14 +35,25 @@ MovieApp.controller('AppCtrl', function(omdb, db, $state, $timeout) {
 
     self.deleteMovie = function(id) {
         db.deleteMovie(self.movies[id].id);
-        self.updateList();
+        $timeout(function () {
+            self.updateList();
+        }, 100);
+        
     };
 
     self.updateList = function()  {
         db.getMovies().success(function(data) { self.movies = data; });
         $timeout(function () {
-            $state.go("movies", {}, { reload: true });
-        }, 100);
+            $state.go($state.current, { param: true });
+        }, 0);
+    };
+    
+    self.editMovie = function(id) {
+        db.getMovie(id).success(function(data) { self.movie = data; });
+    };
+    
+    self.updateMovie = function(id, title, actors, plot, poster, rating, genre) {
+        db.updateMovie(id, title, actors, plot, poster, rating, genre);
     };
 
     // occupy select field with years
