@@ -21,8 +21,8 @@
             <md-button class="md-raised md-accent" ng-click="app.addMovie(app.movie.title, app.movie.actors, app.movie.plot, app.movie.poster, app.movie.rating, app.movie.genre)" aria-label="add">
                 <ng-md-icon icon="playlist_add" style="fill: white" size="32"></ng-md-icon>
             </md-button>
-            <md-button class="md-raised md-accent" ng-click="manual_add = ! manual_add" aria-label="add manually">
-                <ng-md-icon icon="menu" style="fill: white" size="32"></ng-md-icon>
+            <md-button class="md-raised md-accent" ng-click="app.expandAdd()" aria-label="add manually">
+                <ng-md-icon icon="{{app.icon}}" style="fill: white" size="32" options='{"duration": 375}'></ng-md-icon>
             </md-button>
         </form>
 
@@ -41,7 +41,7 @@
             </md-button>
         </form>
 
-        <div layout="column" ng-show="manual_add">
+        <div layout="column" ng-show="app.manual_add">
             <div layout="row" id="form">
                 <form style="width: 20vw;">
                     <md-input-container>

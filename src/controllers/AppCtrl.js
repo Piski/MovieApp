@@ -5,6 +5,8 @@ MovieApp.controller('AppCtrl', function(omdb, db, myfilms, $state, $timeout) {
     self.movie = [];
     self.years = [];
     self.ids = [];
+    self.manual_add = false;
+    self.icon = "expand_more";
 
     /*
     *   OMDB API
@@ -73,6 +75,13 @@ MovieApp.controller('AppCtrl', function(omdb, db, myfilms, $state, $timeout) {
     self.clearMovie = function() {
         self.movie = {}; 
     };
+    
+    self.expandAdd = function() {
+        console.log("lol");
+        self.manual_add = ! self.manual_add;
+        console.log(self.manual_add);
+        self.icon = self.manual_add ? "expand_less" : "expand_more";
+    }
 
     /*
      * OCCUPY SELECT FIELD WITH YEARS
