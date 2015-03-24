@@ -18,26 +18,11 @@
             <md-button type="submit" class="md-raised md-primary" ng-click="app.getMovie(title, year)" aria-label="search">
                 <ng-md-icon icon="search" style="fill: white" size="32"></ng-md-icon>
             </md-button>
-            <md-button class="md-raised md-accent" ng-click="app.addMovie(app.movie.title, app.movie.actors, app.movie.plot, app.movie.poster, app.movie.rating, app.movie.genre)" aria-label="add">
+            <md-button class="md-raised md-accent" ng-click="app.addMovie(app.movie.title, app.movie.actors, app.movie.plot, app.movie.poster, app.movie.rating, app.movie.genres)" aria-label="add">
                 <ng-md-icon icon="playlist_add" style="fill: white" size="32"></ng-md-icon>
             </md-button>
             <md-button class="md-raised md-accent" ng-click="app.expandAdd()" aria-label="add manually">
                 <ng-md-icon icon="{{app.icon}}" style="fill: white" size="32" options='{"duration": 375}'></ng-md-icon>
-            </md-button>
-        </form>
-
-        <!-- myfilms -->
-        <form name="searchAltMovie" id="form" hide>
-            <div layout="row">
-                <div layout="column">
-                    <md-input-container>
-                        <label>Title</label>
-                        <input ng-model="title">
-                    </md-input-container>
-                </div>
-            </div>
-            <md-button type="submit" class="md-raised md-primary" ng-click="app.searchMovie(title)" aria-label="search">
-                <ng-md-icon icon="search" style="fill: white" size="32"></ng-md-icon>
             </md-button>
         </form>
 
@@ -70,10 +55,6 @@
                         <label>Poster</label>
                         <input ng-model="app.movie.poster" maxlength="150" required>
                     </md-input-container>
-
-                    <md-button class="md-raised md-accent" ng-click="app.addMovie(app.movie.title, app.movie.actors, app.movie.plot, app.movie.poster, app.movie.rating, app.movie.genres)">
-                        <ng-md-icon icon="playlist_add" style="fill: white" size="32"></ng-md-icon>
-                    </md-button>
                 </form>
             </div>
         </div>

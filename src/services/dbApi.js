@@ -4,33 +4,21 @@ angular.module('MovieApp')
         var obj = {};
 
         obj.getMovie = function(id){
-            return $http.get(serviceBase + "movie/" + id).
-            success(function(data) {
-                console.log(data);
-            });
+            return $http.get(serviceBase + "movie/" + id);
         };
 
         obj.getMovies = function(){
-            return $http.get(serviceBase + "movies").
-            success(function(data) {
-                console.log(data);
-            });
+            return $http.get(serviceBase + "movies");
         };
 
         obj.addMovie = function(title, actors, plot, poster, rating, genres){
             for (i = 0; i < 2; i++) poster = encodeURIComponent(poster);
-            return $http.post(serviceBase + "add_movie/" + title + "/" + actors + "/" + plot + "/" + poster + "/" + rating + "/" + genres).
-            success(function(status, data) {
-                console.log("status: " + status + "\ndata: " + data);
-            });
+            return $http.post(serviceBase + "add_movie/" + title + "/" + actors + "/" + plot + "/" + poster + "/" + rating + "/" + genres);
         };
 
         obj.updateMovie = function(id, title, actors, plot, poster, rating, genres){
             for (i = 0; i < 2; i++) poster = encodeURIComponent(poster);
-            return $http.put(serviceBase + "update_movie/" + id + "/" + title + "/" + actors + "/" + plot + "/" + poster + "/" + rating + "/" + genres)
-            success(function(status, data) {
-                console.log("status: " + status + "\ndata: " + data);
-            });
+            return $http.put(serviceBase + "update_movie/" + id + "/" + title + "/" + actors + "/" + plot + "/" + poster + "/" + rating + "/" + genres);
         };
 
         obj.deleteMovie = function(id){

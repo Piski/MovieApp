@@ -12,6 +12,9 @@ $app->put('/update_movie/:id/:title/:actors/:plot/:poster/:rating/:genres', 'upd
 $app->delete('/delete_movie/:id', 'deleteMovie');
 $app->run();
 
+/*
+ * GET SINGLE MOVIE
+ */
 
 function getMovie($id) {
     $database = dbConnection();
@@ -33,12 +36,12 @@ function getMovie($id) {
         "movie_actors.mid" => $id
     ]);
 
-    $genres = $database->select("genres", [
-        "[>]movie_genre" => ["id" => "gid"],
+    $genres = $database->select("genre", [
+        "[>]movie_genres" => ["id" => "gid"],
     ], [
-        "genres.genre"
+        "genre.genre"
     ],[
-        "movie_genre.mid" => $id
+        "movie_genres.mid" => $id
     ]);
 
     $data["actors"] = toString($actors);
@@ -75,12 +78,12 @@ function getMovies() {
             "movie_actors.mid" => $id
         ]);
 
-        $genres = $database->select("genres", [
-            "[>]movie_genre" => ["id" => "gid"],
+        $genres = $database->select("genre", [
+            "[>]movie_genres" => ["id" => "gid"],
         ], [
-            "genres.genre"
+            "genre.genre"
         ],[
-            "movie_genre.mid" => $id
+            "movie_genres.mid" => $id
         ]);
 
         $data[$i]["actors"] = toString($actors);
@@ -118,8 +121,8 @@ function addMovie($title, $actors, $plot, $poster, $rating, $genres) {
         };
     };
     foreach($genre as $name) {
-        if(!$database->has("genres", ["genre" => $name])) {
-            $database->insert("genres", [
+        if(!$database->has("genre", ["genre" => $name])) {
+            $database->insert("genre", [
                 "genre" => $name
             ]);
         };
@@ -143,12 +146,12 @@ function addMovie($title, $actors, $plot, $poster, $rating, $genres) {
             ]);
         };
         foreach($genre as $name) {
-            $genre_id = $database->get('genres', [
+            $genre_id = $database->get('genre', [
                 'id'
             ],[
                 "genre" => $name
             ]);
-            $database->insert("movie_genre", [
+            $database->insert("movie_genres", [
                 "mid" => $movie_id['id'],
                 "gid" => $genre_id['id']
             ]);
@@ -193,8 +196,8 @@ function updateMovie($id, $title, $actors, $plot, $poster, $rating, $genres) {
         };
     };
     foreach($genre as $name) {
-        if(!$database->has("genres", ["genre" => $name])) {
-            $database->insert("genres", [
+        if(!$database->has("genre", ["genre" => $name])) {
+            $database->insert("genre", [
                 "genre" => $name
             ]);
             $newGenre = true;
@@ -219,16 +222,16 @@ function updateMovie($id, $title, $actors, $plot, $poster, $rating, $genres) {
     };
     
     if($newGenre) {
-        $database->delete("movie_genre", [
+        $database->delete("movie_genres", [
             "mid" => $id
         ]);
         foreach($genre as $name) {
-            $genre_id = $database->get('genres', [
+            $genre_id = $database->get('genre', [
                 'id'
             ],[
                 "genre" => $name
             ]);
-            $database->insert("movie_genre", [
+            $database->insert("movie_genres", [
                 "mid" => $id,
                 "gid" => $genre_id['id']
             ]);
@@ -245,7 +248,7 @@ function deleteMovie($id) {
     $database->delete("movie_actors", [
         "mid" => $id
     ]);
-    $database->delete("movie_genre", [
+    $database->delete("movie_genres", [
         "mid" => $id
     ]);
     $database->delete("movies", [
@@ -259,7 +262,7 @@ function dbConnection() {
         'database_name' => 'movieapp',
         'server' => 'localhost',
         'username' => 'root',
-        'password' => 'eskimo',
+        'password' => '',
         'charset' => 'utf8'
     ]);
     return $database;

@@ -1,34 +1,24 @@
 angular.module("MovieApp")
     .config(function($stateProvider, $urlRouterProvider) {
-        //
-        // For any unmatched url, redirect to /state1
         $urlRouterProvider.otherwise("/movies");
         $urlRouterProvider.when("/update", "/movies");
-        //
-        // Now set up the states
         $stateProvider
             .state('movies', {
                 url: "/movies",
-                templateUrl: "views/movieList.html"
-                /*
-                controller: "listCtrl",
+                templateUrl: "views/movieList.html",
+                controller: "movieListCtrl",
                 controllerAs: "app"
-                */
             })
             .state('add', {
                 url: "/addmovie",
-                templateUrl: "views/addMovie.html"
-                /*
-                controller: "addCtrl",
+                templateUrl: "views/addMovie.html",
+                controller: "addMovieCtrl",
                 controllerAs: "app"
-                */
             })
             .state('update', {
                 url: "/update",
-                templateUrl: "views/updateMovie.html"
-                /*
-                    controller: "listCtrl",
-                    controllerAs: "app"
-                    */
+                templateUrl: "views/updateMovie.html",
+                controller: "updateMovieCtrl",
+                controllerAs: "app"
             });
     });

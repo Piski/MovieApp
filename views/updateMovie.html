@@ -29,7 +29,7 @@
                     <input ng-model="app.movie.poster" maxlength="250" required>
                 </md-input-container>
                 
-                <md-button class="md-raised md-accent" ng-click="app.updateMovie(app.movie.id, app.movie.title, app.movie.actors, app.movie.plot, app.movie.poster, app.movie.rating, app.movie.genres)">
+                <md-button class="md-raised md-accent" ng-click="app.updateMovie(app.movie.id, app.movie.title, app.movie.actors, app.movie.plot, app.movie.poster, app.movie.rating, app.movie.genres)" aria-label="update">
                     <ng-md-icon icon="publish" style="fill: white" size="32"></ng-md-icon>
                 </md-button>
             </form>

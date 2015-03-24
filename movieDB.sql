@@ -1,3 +1,5 @@
+create database if not exists movieapp;
+use movieapp;
 create table movies (
 	id int not null auto_increment,
 	title varchar(40) not null,
@@ -6,12 +8,12 @@ create table movies (
 	rating double not null,
 	primary key (id)
 );
-create table genres (
+create table genre (
     id int not null auto_increment,
 	genre varchar(30) not null,
 	primary key (id)
 );
-create table movie_genre (
+create table movie_genres (
 	mid int not null,
 	gid int not null,
 	foreign key (mid) references movies(id),

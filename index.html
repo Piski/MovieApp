@@ -9,7 +9,7 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
     <title>Movies to watch</title>
 </head>
-<body ng-app="MovieApp" layout="column" ng-controller="AppCtrl as app">
+<body ng-app="MovieApp" layout="column">
 <md-toolbar md-scroll-shrink class="md-tall">
     <div class="md-toolbar-tools">
         <div layout="column" layout-align="center start" id="header-text">
@@ -18,7 +18,7 @@
             <p id="header-p">A place where anyone can suggest something good to watch</p>
         </div>
         
-        <div layout="row" layout-align="space-around center">
+        <div layout="row" layout-align="space-around center" ng-controller="toolbarCtrl as app">
             <div flex>
             <md-button class="md-primary" ui-sref="add" ng-click="app.clearMovie()" aria-label="add">
                 <ng-md-icon icon="add_box" style="fill: white" size="48"></ng-md-icon> 
@@ -52,10 +52,13 @@
     <!-- source -->
     <script src="src/boot.js"></script>
     <script src="src/configs/routes.js"></script>
-    <script src="src/controllers/AppCtrl.js"></script>
+    <script src="src/controllers/toolbarCtrl.js"></script>
+    <script src="src/controllers/movieListCtrl.js"></script>
+    <script src="src/controllers/addMovieCtrl.js"></script>
+    <script src="src/controllers/updateMovieCtrl.js"></script>
     <script src="src/services/omdbApi.js"></script>
     <script src="src/services/dbApi.js"></script>
-    <script src="src/services/myfilmsApi.js"></script>
+    <script src="src/services/movie.js"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-animate.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-aria.min.js"></script>
