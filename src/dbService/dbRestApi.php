@@ -89,7 +89,7 @@ function getMovies() {
         $data[$i]["actors"] = toString($actors);
         $data[$i]["genres"] = toString($genres);
     }
-    echo json_encode($data);
+    if (isset($data)) echo json_encode($data);
 }
 
 
@@ -262,7 +262,7 @@ function dbConnection() {
         'database_name' => 'movieapp',
         'server' => 'localhost',
         'username' => 'root',
-        'password' => '',
+        'password' => 'eskimo',
         'charset' => 'utf8'
     ]);
     return $database;

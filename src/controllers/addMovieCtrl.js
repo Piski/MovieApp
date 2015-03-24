@@ -6,12 +6,14 @@ angular.module('MovieApp')
     self.years = [];
     self.manual_add = false;
     self.icon = "expand_more";
+    self.loading = false;
     
     /*
     *   OMDB API
     */
 
     self.getMovie = function(title, year) {
+        self.loading = true;
         year = typeof year === 'undefined' ? "" : year;
         omdb.getMovie(title, year).then(function(data){
             self.movie = {
@@ -23,6 +25,8 @@ angular.module('MovieApp')
                 genres: data.data.Genre,
                 error: data.data.Error
             };
+        }).finally(function() {
+            self.loading = false;
         });
     };
     

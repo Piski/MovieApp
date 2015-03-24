@@ -66,7 +66,7 @@
 
     <div layout="row" id="add-content-image" flex>
         <div layout="column" id="add-content">
-            <div class="md-tile-content" id="add-content">
+            <div class="md-tile-content" id="add-content" ng-hide=app.loading>
                 <h1>{{app.movie.title}}</h1>
                 <h1>{{app.movie.error}}</h1>
                 <h3>{{app.movie.actors}}</h3>
@@ -77,6 +77,7 @@
                 <h4>{{app.movie.rating}}</h4>
             </div>
         </div>
-        <img id="moviePoster" ng-src="{{app.movie.poster}}">
+        <md-progress-circular md-mode="indeterminate" style="margin-top: 20vh;" ng-show=app.loading></md-progress-circular>
+        <img id="moviePoster" ng-src="{{app.movie.poster}}" ng-hide=app.loading>
     </div>
 </div>
